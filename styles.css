@@ -1,19 +1,37 @@
-html, body {
+/* Reset */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background: transparent;
-  width: 100%;
+}
+
+/* Full page layout */
+html, body {
   height: 100%;
+  width: 100%;
+  background: #191919;   /* Dark mode background */
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: sans-serif;
-  font-size: 120px;
-  background: #191919; /* or match Notion exactly */
-  color: white;
 }
 
-.clock { text-align: center; }
+/* Clock container */
+.clock {
+  text-align: center;
+}
 
-#time { font-size: 15vw; font-weight: bold; }
-#date { font-size: 4vw; margin-top: 0.5vw; }
+/* Time */
+#time {
+  font-size: clamp(80px, 12vw, 180px);
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+/* Date */
+#date {
+  font-size: clamp(18px, 3vw, 40px);
+  margin-top: 10px;
+  opacity: 0.7;
+}
