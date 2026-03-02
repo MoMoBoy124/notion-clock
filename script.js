@@ -1,14 +1,25 @@
 function updateClock() {
   const now = new Date();
-  document.getElementById("time").textContent = 
-      now.toLocaleTimeString([], {
-  hour:"2-digit",
-  minute:"2-digit",
-  second:"2-digit",
-  hour12: false
-});
-  document.getElementById("date").textContent =
-      now.toLocaleDateString([], {weekday:"long", month:"long", day:"numeric"});
+
+  const time = now.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false
+  });
+
+  const date = now.toLocaleDateString([], {
+    weekday: "long",
+    month: "long",
+    day: "numeric"
+  });
+
+  document.getElementById("time").textContent = time;
+  document.getElementById("date").textContent = date;
 }
+
+// Update every second
 setInterval(updateClock, 1000);
+
+// Initial call
 updateClock();
