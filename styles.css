@@ -9,6 +9,8 @@ html, body {
   justify-content: center;
   font-family: sans-serif;
   font-size: 120px;
+  background: #191919; /* or match Notion exactly */
+  color: white;
 }
 
 .clock { text-align: center; }
