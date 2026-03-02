@@ -24,7 +24,7 @@ html, body {
 
 /* Time */
 #time {
-  font-size: clamp(80px, 12vw, 180px);
+  font-size: 120px;
   font-weight: 600;
   letter-spacing: 2px;
 }
