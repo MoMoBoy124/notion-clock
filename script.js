@@ -8,7 +8,6 @@ function updateClock() {
     hour12: true
   });
 
-  // Split time and AM/PM
   const [mainTime, period] = time.split(" ");
 
   const date = now.toLocaleDateString([], {
@@ -17,10 +16,8 @@ function updateClock() {
     day: "numeric"
   });
 
-  // Insert AM/PM inside a span for styling
-  document.getElementById("time").innerHTML =
-    `${mainTime} <span class="ampm">${period}</span>`;
-
+  document.getElementById("time").textContent = mainTime;
+  document.getElementById("ampm").textContent = period;
   document.getElementById("date").textContent = date;
 }
 
