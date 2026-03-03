@@ -1,14 +1,14 @@
 function updateClock() {
   const now = new Date();
 
-  const time = now.toLocaleTimeString([], {
+  const timeString = now.toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
     hour12: true
   });
 
-  const [mainTime, period] = time.split(" ");
+  const [mainTime, period] = timeString.split(" ");
 
   const date = now.toLocaleDateString([], {
     weekday: "long",
@@ -16,8 +16,9 @@ function updateClock() {
     day: "numeric"
   });
 
-  document.getElementById("time").textContent = mainTime;
-  document.getElementById("ampm").textContent = period;
+  document.getElementById("time").innerHTML =
+    `${mainTime}<span class="ampm">${period}</span>`;
+
   document.getElementById("date").textContent = date;
 }
 
