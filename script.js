@@ -1,32 +1,7 @@
-<script>
-
-let serverOffset = 0;
-
-// Fetch accurate Sydney time
-async function syncSydneyTime() {
-  try {
-    const res = await fetch("https://worldtimeapi.org/api/timezone/Australia/Sydney");
-    const data = await res.json();
-
-    const serverTime = new Date(data.datetime).getTime();
-    const localTime = Date.now();
-
-    serverOffset = serverTime - localTime;
-  } catch (e) {
-    console.log("Time sync failed, using local clock.");
-  }
-}
-
-// Get accurate Sydney time
-function getSydneyTime() {
-  return new Date(Date.now() + serverOffset);
-}
-
-// Format clock properly
 function updateClock() {
-  const now = getSydneyTime();
+  const now = new Date();
 
-  const formatter = new Intl.DateTimeFormat("en-AU", {
+  const timeFormatter = new Intl.DateTimeFormat("en-AU", {
     timeZone: "Australia/Sydney",
     hour: "numeric",
     minute: "2-digit",
@@ -34,31 +9,33 @@ function updateClock() {
     hour12: true
   });
 
-  const parts = formatter.formatToParts(now);
+  const dateFormatter = new Intl.DateTimeFormat("en-AU", {
+    timeZone: "Australia/Sydney",
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  });
+
+  const timeParts = timeFormatter.formatToParts(now);
 
   let hour, minute, second, dayPeriod;
 
-  parts.forEach(part => {
+  timeParts.forEach(part => {
     if (part.type === "hour") hour = part.value;
     if (part.type === "minute") minute = part.value;
     if (part.type === "second") second = part.value;
-    if (part.type === "dayPeriod") dayPeriod = part.value.toUpperCase(); // force AM / PM
+    if (part.type === "dayPeriod") dayPeriod = part.value.toUpperCase(); // FORCE CAPS
   });
 
-  document.getElementById("clock").textContent =
-    `${hour}:${minute}:${second} ${dayPeriod}`;
+  document.getElementById("time").innerHTML = `
+    ${hour}:${minute}:${second}
+    <span class="ampm">${dayPeriod}</span>
+  `;
+
+  document.getElementById("date").textContent =
+    dateFormatter.format(now);
 }
 
-// Initialize
-async function initClock() {
-  await syncSydneyTime();
-  updateClock();
-  setInterval(updateClock, 1000);
-
-  // Re-sync every hour for accuracy
-  setInterval(syncSydneyTime, 3600000);
-}
-
-initClock();
-
-</script>
+updateClock();
+setInterval(updateClock, 1000);
