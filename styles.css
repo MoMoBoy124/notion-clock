@@ -33,7 +33,7 @@ html, body {
 /* AM / PM styling */
 .ampm {
   font-size: 28px;      /* smaller than main time */
-  margin-left: 6px;
+  margin-left:300px;
   opacity: 0.6;
   font-weight: 500;
 }
