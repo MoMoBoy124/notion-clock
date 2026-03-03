@@ -25,11 +25,11 @@ function updateClock() {
     if (part.type === "hour") hour = part.value;
     if (part.type === "minute") minute = part.value;
     if (part.type === "second") second = part.value;
-    if (part.type === "dayPeriod") dayPeriod = part.value.toUpperCase(); // FORCE CAPS
+    if (part.type === "dayPeriod") dayPeriod = part.value.toUpperCase();
   });
 
   document.getElementById("time").innerHTML = `
-    ${hour}:${minute}:${second}
+    <span class="time-main">${hour}:${minute}:${second}</span>
     <span class="ampm">${dayPeriod}</span>
   `;
 
