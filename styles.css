@@ -26,21 +26,29 @@ html, body {
 #time {
   font-size: 120px;
   font-weight: 600;
-  letter-spacing: 2px;
   line-height: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 14px; /* controls spacing cleanly */
+}
+
+/* Main time numbers */
+.time-main {
+  letter-spacing: 2px;
 }
 
 /* AM / PM styling */
 .ampm {
-  font-size: 28px;      /* smaller than main time */
-  margin-left:20px;
+  font-size: 28px;
   opacity: 0.6;
   font-weight: 500;
+  transform: translateY(-18px); /* subtle raised look */
 }
 
 /* Date */
 #date {
   font-size: 40px;
-  margin-top: 12px;
+  margin-top: 14px;
   opacity: 0.7;
 }
